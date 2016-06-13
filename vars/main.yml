@@ -1,0 +1,9 @@
+---
+# vars file for ansible
+
+ansible_role_required_packages:
+  - python-dev
+  - python-pip
+  - python-boto
+  - libffi-dev
+  - libssl-dev

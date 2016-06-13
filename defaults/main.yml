@@ -1,0 +1,5 @@
+---
+# defaults file for ansible
+
+ansible_role_version: 'latest'
+ansible_role_docker_connect: True

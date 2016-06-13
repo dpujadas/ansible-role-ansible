@@ -1,0 +1,35 @@
+---
+# tasks file for ansible
+
+- name: Install required packages
+  apt:
+    name: '{{ item }}'
+    state: 'installed'
+  with_items: '{{ ansible_role_required_packages }}'
+  tags:
+    - ansible
+
+- name: Install pip ansible package
+  pip:
+    name: 'ansible'
+    state: 'latest'
+  when: ansible_role_version == 'latest'
+  tags:
+    - ansible
+
+- name: Install pip ansible package
+  pip:
+    name: 'ansible'
+    state: 'present'
+    version: '{{ ansible_role_version }}'
+  when: ansible_role_version != 'latest'
+  tags:
+    - ansible
+
+- name: Install pip docker-py package
+  pip:
+    name: 'docker-py'
+    state: 'latest'
+  when: ansible_role_docker_connect
+  tags:
+    - ansible
