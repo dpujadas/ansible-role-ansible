@@ -3,4 +3,8 @@
   connection: docker
   remote_user: root
   roles:
-    - ansible-role-ansible
+    - {
+      role: ansible-role-ansible,
+      ansible_role_docker_connect: True,
+      ansible_role_aws_connect: True
+    }

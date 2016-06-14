@@ -7,7 +7,8 @@ Role Variables
 --------------
 
 - `ansible_role_version`: Ansible version to install (default: 'latest')
-- `ansible_role_docker_connect`: If true, install docker-py library to allow docker connection (default: True)
+- `ansible_role_aws_connect`: If true, install boto and boto3 library to allow AWS connection (default: False)
+- `ansible_role_docker_connect`: If true, install docker-py library to allow docker connection (default: False)
 
 Example Playbook
 ----------------
@@ -16,7 +17,8 @@ Example Playbook
       roles:
         - { 
           role: 'ansible',
-          ansible_role_version: '1.9.6'
+          ansible_role_version: '1.9.6',
+          ansible_role_aws_connect: True
         }
 
 License
