@@ -6,19 +6,22 @@ This role installs ansible itself using pip package
 Role Variables
 --------------
 
-- `ansible_role_version`: Ansible version to install (default: 'latest')
-- `ansible_role_aws_connect`: If true, install boto and boto3 library to allow AWS connection (default: False)
-- `ansible_role_docker_connect`: If true, install docker-py library to allow docker connection (default: False)
+- `ansible_role_version`: Ansible version to install. If not set, latest will be installed (Ex: '2.1.0')
+- `ansible_role_extra_pip_packages`: List of additional pip packages to install (default: Empty list)
 
 Example Playbook
 ----------------
 
     - hosts: servers
+      vars:
+        ansible_role_extra_pip_packages:
+          - name: 'boto'
+            version: '2.42.0'
+          - name: 'docker-py'
       roles:
         - { 
           role: 'ansible',
-          ansible_role_version: '1.9.6',
-          ansible_role_aws_connect: True
+          ansible_role_version: '2.1.0'
         }
 
 License

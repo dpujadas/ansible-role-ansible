@@ -1,7 +1,7 @@
 ---
 # defaults file for ansible
 
-ansible_role_version: 'latest'
-ansible_role_docker_connect: False
-ansible_role_aws_connect: False
-
+# Format for extra_pip_packages:
+#   - name    : Package name
+#     version : Package version (optional)
+ansible_role_extra_pip_packages: []

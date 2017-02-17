@@ -1,20 +1,6 @@
 ---
 # tasks file for ansible
 
-- name: Add docker pip package
-  set_fact:
-    ansible_role_extra_pip_packages: '{{ ansible_role_extra_pip_packages + ansible_role_docker_pip_packages }}'
-  when: ansible_role_docker_connect
-  tags:
-    - ansible
-
-- name: Add aws pip packages
-  set_fact:
-    ansible_role_extra_pip_packages: '{{ ansible_role_extra_pip_packages + ansible_role_aws_pip_packages }}'
-  when: ansible_role_aws_connect
-  tags:
-    - ansible
-
 - name: Install required packages
   apt:
     name: '{{ item }}'
@@ -22,28 +8,11 @@
   with_items: '{{ ansible_role_required_packages }}'
   tags:
     - ansible
-
-- name: Install pip ansible package
+#
+- name: Install pip packages
   pip:
-    name: 'ansible'
-    state: 'latest'
-  when: ansible_role_version == 'latest'
-  tags:
-    - ansible
-
-- name: Install pip ansible package
-  pip:
-    name: 'ansible'
-    state: 'present'
-    version: '{{ ansible_role_version }}'
-  when: ansible_role_version != 'latest'
-  tags:
-    - ansible
-
-- name: Install pip extra packages
-  pip:
-    name: '{{ item }}'
-    state: 'present'
-  with_items: '{{ ansible_role_extra_pip_packages }}'
+    name: '{{ item.name }}'
+    version: '{{ item.version|d(omit) }}'
+  with_items: '{{ ansible_role_pip_package + ansible_role_extra_pip_packages }}'
   tags:
     - ansible

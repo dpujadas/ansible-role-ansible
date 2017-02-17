@@ -1,10 +1,14 @@
 ---
-- hosts: travis
+- hosts: all
   connection: docker
   remote_user: root
+  vars:
+    ansible_role_extra_pip_packages:
+      - name: 'boto'
+        version: '2.42.0'
+      - name: 'docker-py'
   roles:
     - {
       role: ansible-role-ansible,
-      ansible_role_docker_connect: True,
-      ansible_role_aws_connect: True
+      ansible_role_version: '2.2.0'
     }

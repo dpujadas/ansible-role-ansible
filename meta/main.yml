@@ -4,15 +4,20 @@ galaxy_info:
 
   license: MIT
 
-  min_ansible_version: 1.9
+  min_ansible_version: 2.0
 
   platforms:
   - name: Ubuntu
     versions:
-      - all
+      - trusty
+      - xenial
 
   galaxy_tags:
     - ubuntu
     - ansible
 
-dependencies: []
+dependencies:
+- name: python-pip
+  src: 'https://github.com/dpujadas/ansible-role-python-pip.git'
+  scm: git
+  version: master
